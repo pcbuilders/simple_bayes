@@ -21,7 +21,7 @@ defmodule SimpleBayes.Storage.Dets do
   end
 
   def load(opts) do
-    {:ok, reference}  = :dets,open_file(opts[:file_path])
+    {:ok, reference}  = :dets.open_file(opts[:file_path])
     [{_, struct}] = :dets.lookup(reference, "data")
 
     {:ok, pid} = Agent.start_link(fn -> struct end)
